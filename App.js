@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeBottomTabNavigator from './src/navigators/HomeBottomTabNavigator';
-import LoginScreen from './src/screens/LoginScreen';
+import AuthStack from './src/navigators/AuthStack';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -11,7 +11,7 @@ export default function App() {
     <NavigationContainer>
       <StatusBar translucent style='auto'/>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="HomeBottomTabNavigator" component={HomeBottomTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>

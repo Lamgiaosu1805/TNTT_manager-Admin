@@ -18,7 +18,12 @@ export default function LoginScreen({navigation}) {
             })
             const data = response.data
             if(data.status == true) {
-                navigation.navigate('HomeBottomTabNavigator')
+                if(data.result.isResetPassword == true) {
+                    navigation.navigate('ChangeFirstPassScreen', {oldPassword: password, accessToken: data.result.accessToken})
+                }
+                else {
+                    navigation.replace('HomeBottomTabNavigator')
+                }
             }
             else {
                 console.log(data)
