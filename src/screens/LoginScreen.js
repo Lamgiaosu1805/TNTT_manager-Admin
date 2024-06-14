@@ -53,24 +53,26 @@ export default function LoginScreen({navigation}) {
                                 shadowColor: 'grey',
                                 shadowOpacity: 0.25,
                                 elevation: 10,
-                                color: 'grey'
+                                color: 'grey',
                             }} 
                             autoCapitalize='none'
                             onChangeText={(value) => setUsername(value)}
                         />
                         <Text style={{fontSize: 16, marginBottom: 12, marginTop: 20, fontWeight: '500'}}>Mật khẩu</Text>
-                        <TextInput
-                            style={{
-                                backgroundColor: 'white', paddingHorizontal: 12, borderRadius: 30, height: 52, fontSize: 16,  shadowOffset: { width: 1, height: 1 },
-                                shadowColor: 'grey',
-                                shadowOpacity: 0.25,
-                                elevation: 6,
-                                color: 'grey'
-                            }} 
-                            autoCapitalize='none'
-                            secureTextEntry={true}
-                            onChangeText={(value) => setPassword(value)}
-                        />
+                        <View>
+                            <TextInput
+                                style={{
+                                    backgroundColor: 'white', paddingHorizontal: 12, borderRadius: 30, height: 52, fontSize: 16,  shadowOffset: { width: 1, height: 1 },
+                                    shadowColor: 'grey',
+                                    shadowOpacity: 0.25,
+                                    elevation: 6,
+                                    color: 'grey'
+                                }} 
+                                autoCapitalize='none'
+                                secureTextEntry={true}
+                                onChangeText={(value) => setPassword(value)}
+                            />
+                        </View>
                     </View>
 
                     <TouchableOpacity 
