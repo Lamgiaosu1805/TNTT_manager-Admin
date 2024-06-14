@@ -45,16 +45,3 @@ export default function HomeBottomTabNavigator() {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  shadow: {
-    shadowColor: 'grey',
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 3.5,
-    elevation: 5
-  }
-})
