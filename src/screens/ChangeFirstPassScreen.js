@@ -2,11 +2,14 @@ import { Dimensions, Keyboard, SafeAreaView, StyleSheet, Text, TextInput, Toucha
 import React, { useState } from 'react'
 import axios from 'axios'
 import utils from '../utils'
+import { FontAwesome5 } from '@expo/vector-icons'
 
 export default function ChangeFirstPassScreen({navigation, route}) {
     const params = route.params
     const [newPassword, setNewPassword] = useState("")
     const [reNewPassword, setReNewPassword] = useState("")
+    const [isShowPassword, setIsShowPassword] = useState(false)
+    const [isShowRePassword, setIsShowRePassword] = useState(false)
     const onContinue = async () => {
         if(newPassword == "") {
             alert("Mật khẩu không được bỏ trống")
@@ -45,11 +48,17 @@ export default function ChangeFirstPassScreen({navigation, route}) {
                 <SafeAreaView>
                     <Text style={{fontSize: 16, textAlign: 'center', fontWeight: '600'}}>Bạn vui lòng cập nhật mật khẩu mới !</Text>
                     <View style={{alignItems: 'center'}}>
-                        <View style={{width: Dimensions.get('screen').width * 0.7, borderBottomWidth: 1, marginTop: 40, paddingBottom: 4}}>
-                            <TextInput style={{fontSize: 15, color: 'black', opacity: 0.8}} placeholder='Mật khẩu mới' secureTextEntry={true} onChangeText={(value) => setNewPassword(value)}/>
+                        <View style={styles.inputArea}>
+                            <TextInput style={styles.input} placeholder='Mật khẩu mới' secureTextEntry={!isShowPassword} onChangeText={(value) => setNewPassword(value)}/>
+                            <TouchableOpacity activeOpacity={0.6} onPress={() => {setIsShowPassword(!isShowPassword)}}>
+                                <FontAwesome5 name={isShowPassword ? 'eye-slash' : 'eye'} size={18}/>
+                            </TouchableOpacity>
                         </View>
-                        <View style={{width: Dimensions.get('screen').width * 0.7, borderBottomWidth: 1, marginTop: 40, paddingBottom: 4}}>
-                            <TextInput style={{fontSize: 15, color: 'black', opacity: 0.8}} placeholder='Nhập lại mật khẩu mới' secureTextEntry={true} onChangeText={(value) => setReNewPassword(value)}/>
+                        <View style={styles.inputArea}>
+                            <TextInput style={styles.input} placeholder='Nhập lại mật khẩu mới' secureTextEntry={!isShowRePassword} onChangeText={(value) => setReNewPassword(value)}/>
+                            <TouchableOpacity activeOpacity={0.6} onPress={() => {setIsShowRePassword(!isShowRePassword)}}>
+                                <FontAwesome5 name={isShowRePassword ? 'eye-slash' : 'eye'} size={18}/>
+                            </TouchableOpacity>
                         </View>
                         <TouchableOpacity style={styles.continueButton} activeOpacity={0.6} onPress={onContinue}>
                             <Text style={{fontSize: 15, fontWeight: '600', color: 'yellow'}}>Tiếp tục</Text>
@@ -74,5 +83,20 @@ const styles = StyleSheet.create({
         paddingHorizontal: 32,
         paddingVertical: 16,
         borderRadius: 24
+    },
+    inputArea: {
+        width: Dimensions.get('screen').width * 0.7, 
+        borderBottomWidth: 1, 
+        marginTop: 40, 
+        paddingBottom: 4, 
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        alignItems: 'center'
+    },
+    input: {
+        fontSize: 15, 
+        color: 'black', 
+        opacity: 0.8, 
+        flex: 1
     }
 })

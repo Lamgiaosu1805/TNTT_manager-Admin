@@ -6,6 +6,7 @@ import utils from '../utils'
 export default function LoginScreen({navigation}) {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [isShowPassword, setIsShowPassword] = useState(false)
 
     const handleLogin = async () => {
         if(username == "" || password == "") {
@@ -59,24 +60,25 @@ export default function LoginScreen({navigation}) {
                             onChangeText={(value) => setUsername(value)}
                         />
                         <Text style={{fontSize: 16, marginBottom: 12, marginTop: 20, fontWeight: '500'}}>Mật khẩu</Text>
-                        <View>
-                            <TextInput
-                                style={{
-                                    backgroundColor: 'white', paddingHorizontal: 12, borderRadius: 30, height: 52, fontSize: 16,  shadowOffset: { width: 1, height: 1 },
-                                    shadowColor: 'grey',
-                                    shadowOpacity: 0.25,
-                                    elevation: 6,
-                                    color: 'grey'
-                                }} 
-                                autoCapitalize='none'
-                                secureTextEntry={true}
-                                onChangeText={(value) => setPassword(value)}
-                            />
-                        </View>
+                        <TextInput
+                            style={{
+                                backgroundColor: 'white', paddingHorizontal: 12, borderRadius: 30, height: 52, fontSize: 16,  shadowOffset: { width: 1, height: 1 },
+                                shadowColor: 'grey',
+                                shadowOpacity: 0.25,
+                                elevation: 6,
+                                color: 'grey'
+                            }} 
+                            autoCapitalize='none'
+                            secureTextEntry={!isShowPassword}
+                            onChangeText={(value) => setPassword(value)}
+                        />
+                        <TouchableOpacity style={{marginTop: 24, alignSelf: 'flex-end'}} activeOpacity={0.6} onPress={() => setIsShowPassword(!isShowPassword)}>
+                            <Text style={{fontSize: 15, fontWeight: '600'}}>{isShowPassword ? 'Ẩn mật khẩu' :'Hiện mật khẩu'}</Text>
+                        </TouchableOpacity>
                     </View>
 
                     <TouchableOpacity 
-                        style={{marginTop: 32, paddingHorizontal: 32, paddingVertical: 12, backgroundColor: 'red', borderRadius: 40}} 
+                        style={{marginTop: 24, paddingHorizontal: 32, paddingVertical: 12, backgroundColor: 'red', borderRadius: 40}} 
                         activeOpacity={0.6}
                         onPress={handleLogin}
                     >
