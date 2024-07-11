@@ -27,9 +27,11 @@ export default function LoginScreen({navigation}) {
                 }
             }
             else {
+                utils.showAlert('Thông báo', `${data.message}`)
                 console.log(data)
             }
         } catch (error) {
+            utils.showAlert('Thông báo', `Lỗi hệ thống, vui lòng thử lại sau`)
             console.log(error)
         }
     }
